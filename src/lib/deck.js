@@ -19,14 +19,13 @@ class DeckOfCards {
   }
 
   * deal() {
-    while (this.top) {
+    while (this.top--) {
       const pos = Math.floor(Math.random() * this.top);
       const pick = this.deck[pos];
+    //   console.log('picking card at', pos, pick);
       // place picked to the end of the deck
       this.deck[pos] = this.deck[this.top];
       this.deck[this.top] = pick;
-      // exclude picked card from next deal
-      this.top -= 1;
 
       yield pick;
     }
@@ -47,7 +46,7 @@ class DeckOfCards {
     while (n--) {
       val = iter.next();
       if (val.done) {
-        break;
+        throw new Error('Empty Deck');
       }
       cards.push(val.value);
     }

@@ -4,16 +4,23 @@
             <li v-for="(card, index) in cards"
                 :key="index"
                 class="slot"
-            ></li>
+            >
+                <Card :card="card" v-if="card"/>
+            </li>
         </ul>
     </div>
 </template>
 
 <script>
+import Card from './Card.vue'
+
 export default {
     name: 'CardTable',
     props: {
         cards: Array
+    },
+    components: {
+        Card
     }
 }
 </script>

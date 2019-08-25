@@ -33,7 +33,14 @@ export default {
       this.dealtCards = new Array(5);
     },
     dealFive: function() {
-      this.dealtCards = deck.dealFive();
+      if (deck.empty()) {
+        return;
+      }
+      try {
+        this.dealtCards = deck.dealFive();
+      } catch (e) {
+        alert(e);
+      }
     }
   }
 }
