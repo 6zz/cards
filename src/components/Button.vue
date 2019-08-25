@@ -1,12 +1,13 @@
 <template>
-    <button class="btn primary">{{label}}</button>
+    <button class="btn" :class="{primary}">{{label}}</button>
 </template>
 
 <script>
 export default {
     name: 'btn',
     props: {
-        label: String
+        label: String,
+        primary: Boolean
     }
 }
 </script>

@@ -1,11 +1,9 @@
 <template>
     <div class="table">
         <ul class="slots">
-            <li v-for="(card, index) in dealtCards"
+            <li v-for="(card, index) in cards"
                 :key="index"
                 class="slot"
-                @shuffle-deck="shuffle"
-                @deal-five="dealFive"
             ></li>
         </ul>
     </div>
@@ -14,20 +12,8 @@
 <script>
 export default {
     name: 'CardTable',
-    data: function() {
-        return {
-            dealtCards: new Array(5),
-        }
-    },
-    methods: {
-        dealFive: function(e) {
-            // eslint-disable-next-line
-            console.log('dealfivecards', e)
-        },
-        shuffle: function() {
-            // eslint-disable-next-line
-            console.log('shuffling');
-        }
+    props: {
+        cards: Array
     }
 }
 </script>
@@ -35,7 +21,8 @@ export default {
 <style scoped>
 .slots {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: flex-start;
+    flex-wrap: wrap;
     margin: 5px;
     padding: 5%;
     list-style: none;
@@ -49,5 +36,6 @@ export default {
     border: 1px solid rgb(240, 231, 231);
     border-style: dashed;
     border-radius: 5px;
+    margin: 5px;
 }
 </style>
