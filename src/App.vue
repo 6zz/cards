@@ -4,6 +4,7 @@
     <div class="btns">
       <Button label="shuffle" @click.native="shuffleDeck"/>
       <Button label="dealFive" :primary="true" @click.native="dealFive"/>
+      <span v-if="emptyDeck" class="warn">Deck is empty, please shuffle</span>
     </div>
     <Table :cards="dealtCards"/>
   </div>
@@ -14,8 +15,6 @@ import { default as Deck } from './lib/deck.js'
 import Button from './components/Button.vue'
 import Table from './components/Table.vue'
 
-const deck = new Deck();
-
 export default {
   name: 'app',
   components: {
@@ -24,22 +23,25 @@ export default {
   },
   data: function() {
     return {
-      dealtCards: new Array(5)
+      dealtCards: new Array(5),
+      deck: new Deck()
     };
+  },
+  computed: {
+    emptyDeck: function() {
+      return this.deck.empty();
+    }
   },
   methods: {
     shuffleDeck: function() {
-      deck.shuffle();
+      this.deck.shuffle();
       this.dealtCards = new Array(5);
     },
     dealFive: function() {
-      if (deck.empty()) {
-        return;
-      }
       try {
-        this.dealtCards = deck.dealFive();
+        this.dealtCards = this.deck.dealFive();
       } catch (e) {
-        alert(e);
+        // deck is empty
       }
     }
   }
@@ -64,5 +66,8 @@ export default {
 }
 .btn {
   margin-right: 5px;
+}
+.warn {
+  color: red;
 }
 </style>

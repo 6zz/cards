@@ -18,6 +18,7 @@ export default {
     border-radius: 5px;
     border: 2px solid grey;
     border-style: outset;
+    outline: none !important;
 }
 
 .primary {
