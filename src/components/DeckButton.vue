@@ -1,13 +1,14 @@
 <template>
     <div class="deck-holder">
         <button class="shuffler" @click="$emit('shuffle-deck')">shuffle</button>
-        <div class="deck-of-cards" v-if="hasCard" @click="$emit('deal-five')">
+        <div class="deck-of-cards" v-if="hasCard">
             <div 
                 class="btn-deck" 
                 :class="'deck-card' + n" 
                 :key="'card' + n" 
-                :style="{left: 2*n + 'px'}"
-                v-for="n in 5"
+                :style="placeCard(n)"
+                @click="dealCards"
+                v-for="n in 52"
             >
                 <div class="inner-thin">
                     <div class="inner-cover"></div>
@@ -22,6 +23,18 @@ export default {
     name: 'DeckButton',
     props: {
         hasCard: Boolean
+    },
+    methods: {
+        dealCards: function(e) {
+            const card = e.currentTarget;
+            card.style.top = '30px';
+            card.style.left = '100px';
+            card.style.opacity = 0;
+            this.$emit('deal-five');
+        },
+        placeCard: function(n) {
+            return (n < 5) ? {left: `${2*n}px`} : {left: '10px'};
+        }
     }
 }
 </script>
@@ -57,6 +70,7 @@ export default {
     background-color: white;
     padding: 1px;
     border-radius: 5px;
+    transition: all 100ms;
 }
 
 .btn-deck:hover {
