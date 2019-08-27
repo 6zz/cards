@@ -1,24 +1,24 @@
 <template>
   <div id="app">
     <img alt="Vue logo" class="logo" src="./assets/logo.png">
-    <div class="btns">
-      <Button label="shuffle" @click.native="shuffleDeck"/>
-      <Button label="dealFive" :primary="true" @click.native="dealFive"/>
-      <span v-if="emptyDeck" class="warn">Deck is empty, please shuffle</span>
-    </div>
+    <DeckButton 
+      :hasCard="hasCard" 
+      @shuffle-deck="shuffleDeck"
+      @deal-five="dealFive"
+    />
     <Table :cards="dealtCards"/>
   </div>
 </template>
 
 <script>
 import { default as Deck } from './lib/deck.js'
-import Button from './components/Button.vue'
+import DeckButton from './components/DeckButton.vue'
 import Table from './components/Table.vue'
 
 export default {
   name: 'app',
   components: {
-    Button,
+    DeckButton,
     Table
   },
   data: function() {
@@ -28,8 +28,8 @@ export default {
     };
   },
   computed: {
-    emptyDeck: function() {
-      return this.deck.empty();
+    hasCard: function() {
+      return !this.deck.empty();
     }
   },
   methods: {
@@ -49,6 +49,10 @@ export default {
 </script>
 
 <style>
+html {
+  height: 100%;
+  background-color: #777;
+}
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
