@@ -1,7 +1,7 @@
 <template>
     <div class="card">
-        <CardHalf :top=true :value="value" :suite="suite"/>
-        <CardHalf :top=false :value="value" :suite="suite"/>
+        <CardHalf top :value="value" :suite="suite"/>
+        <CardHalf :value="value" :suite="suite"/>
     </div>
 </template>
 

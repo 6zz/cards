@@ -1,5 +1,5 @@
 <template>
-    <div :class="[top? 'top':'bottom', suite]">
+    <div :class="classObj">
         <span>{{value}}</span>
     </div>
 </template>
@@ -11,6 +11,15 @@ export default {
         top: Boolean,
         suite: String,
         value: String
+    },
+    computed: {
+        classObj: function() {
+            return {
+                top: this.top,
+                bottom: !this.top,
+                [this.suite]: true
+            }
+        }
     }
 }
 </script>
