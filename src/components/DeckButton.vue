@@ -78,14 +78,14 @@ export default {
 }
 
 .inner-thin {
-    border: 1px solid red;
+    border: 1px solid rgb(53, 3, 235);
     padding: 1px;
     border-radius: 5px;
 }
 
 .inner-cover {
     height: 60px;
-    background-color: red;
+    background-color: rgb(53, 3, 235);
     border-radius: 5px;
 }
 </style>

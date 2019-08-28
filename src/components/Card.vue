@@ -1,17 +1,18 @@
 <template>
     <div class="card">
-        <div class="top" :class="suite">
-            <span>{{value}}</span>
-        </div>
-        <div class="bottom" :class="suite">
-            <span>{{value}}</span>
-        </div>
+        <CardHalf :top=true :value="value" :suite="suite"/>
+        <CardHalf :top=false :value="value" :suite="suite"/>
     </div>
 </template>
 
 <script>
+import CardHalf from './CardHalf.vue'
+
 export default {
     name: 'Card',
+    components: {
+        CardHalf
+    },
     props: {
         card: Object
     },
@@ -25,7 +26,7 @@ export default {
                 jack: 'J'
             }[o.v || ''];
 
-            return val || o.v || '';
+            return '' + (val || o.v || '');
         },
         suite: function() {
             const o = this.card || {}
